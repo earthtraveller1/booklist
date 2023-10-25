@@ -1,0 +1,33 @@
+<div class="flex flex-col mx-auto max-w-xl">
+    <input 
+        class="bg-zinc-900 text-zinc-100 focus:outline-none my-2 border-b-gray-700 focus:border-b-gray-500 duration-300 border-solid border-b-2 py-2" 
+        type="text" 
+        name="title"
+        autocomplete="false" 
+        placeholder="Title"
+    >
+    <input 
+        type="text" 
+        name="author"
+        class="bg-zinc-900 text-zinc-100 focus:outline-none my-2 border-b-gray-700 focus:border-b-gray-500 duration-300 border-solid border-b-2 py-2" 
+        autocomplete="false" 
+        placeholder="Author"
+    >
+    <input 
+        type="text" 
+        name="yearPublished"
+        class="bg-zinc-900 text-zinc-100 focus:outline-none my-2 border-b-gray-700 focus:border-b-gray-500 duration-300 border-solid border-b-2 py-2" 
+        autocomplete="false" 
+        placeholder="Year Published"
+    >
+
+    <button 
+        class="mx-auto max-w-lg bg-lime-800 text-white p-4 my-4 text-lg rounded-lg hover:bg-lime-900 active:bg-lime-950 duration-200"
+        hx-post="/api/books"
+        hx-target="#main-items"
+        hx-include="closest div"
+        hx-swap="outerHTML"
+    >
+        Add Book
+    </button>
+</div>
