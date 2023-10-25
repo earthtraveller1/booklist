@@ -6,10 +6,9 @@
         </div>
     #else:
         #for(book in books):
-        <div>
-            <p>Title: #(book.title)</p>
-            <p>Author: #(book.author)</p>
-            <p>Year Published: #(book.yearPublished)</p>
+        <div class="bg-stone-700 rounded-lg my-2 px-2 py-4">
+            <div class="text-xl mb-1">#(book.title)</div>
+            <div class="italic text-stone-400">By #(book.author), published #(book.yearPublished)</div>
         </div>
         #endfor
     #endif
