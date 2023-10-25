@@ -5,6 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "booklist",
+    platforms: [
+        .macOS(.v10_15),
+        .iOS(.v13),
+        .tvOS(.v13),
+        .watchOS(.v6)
+    ],
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "4.84.6"),
         .package(url: "https://github.com/vapor/leaf.git", from: "4.2.4"),
