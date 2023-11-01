@@ -1,4 +1,4 @@
-<div class="flex max-w-xl mx-auto flex-col" id="main-items">
+<div class="flex max-w-2xl mx-auto flex-col" id="main-items">
     #if(count(books) < 1):
         <div class="bg-neutral-950 text-center p-10 mx-auto rounded-lg my-4 text-neutral-600 select-none">
             You currently have no books. <br>
