@@ -6,9 +6,12 @@
         </div>
     #else:
         #for(book in books):
-        <div class="bg-stone-700 rounded-lg my-2 px-2 py-4">
-            <div class="text-xl mb-1">#(book.title)</div>
-            <div class="italic text-stone-400">By #(book.author), published #(book.yearPublished)</div>
+        <div class="flex flex-row">
+            <button class="bg-red-700 text-white rounded-lg text-center flex align-middle my-2 py-4 mr-4 hover:bg-red-800 active:bg-red-900 duration-200">Delete Book</button>
+            <div class="bg-stone-700 rounded-lg my-2 px-2 py-4 w-full">
+                <div class="text-xl mb-1">#(book.title)</div>
+                <div class="italic text-stone-400">By #(book.author), published #(book.yearPublished)</div>
+            </div>
         </div>
         #endfor
     #endif
