@@ -23,7 +23,7 @@
 
     <button 
         class="mx-auto max-w-lg bg-lime-800 text-white p-4 my-4 text-lg rounded-lg hover:bg-lime-900 active:bg-lime-950 duration-200" 
-        hx-get="/add-book-form.html"
+        hx-get="/api/add-book-form"
         hx-swap="outerHTML"
     >
         Add Book

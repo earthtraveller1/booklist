@@ -12,6 +12,10 @@ func index(request: Request) async throws -> View {
     return try await request.view.render("index", Context(books: books))
 }
 
+func addBookForm(request: Request) async throws -> View {
+    return try await request.view.render("book-form")
+}
+
 let app = Application()
 
 app.views.use(.leaf)
@@ -21,6 +25,7 @@ app.databases.use(.sqlite(.file("books.db")), as: .sqlite)
 app.migrations.add(CreateBooks())
 try app.group("api") { api in 
     try api.register(collection: BookController())
+    api.get("add-book-form", use: addBookForm)
 }
 
 app.get(use: index)
