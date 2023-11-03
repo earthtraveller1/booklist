@@ -67,7 +67,7 @@ struct BookController: RouteCollection {
         throw Abort(.badRequest)
     }
 
-    func deleteBook(request: Request) async throws -> HTTPStatus {
+    func deleteBook(request: Request) async throws -> View {
         if let bookID = request.parameters.get("id") {
             if let bookID = UUID.init(uuidString: bookID) {
             try await Book
@@ -75,10 +75,14 @@ struct BookController: RouteCollection {
                 .filter(\.$id == bookID)
                 .delete()
 
-                return .ok
+                struct Context : Encodable {
+                    var books: [Book]
+                }
+                let context = Context(books: try await Book.query(on: request.db).all())
+                return try await request.view.render("main-items", context)
             }
         } 
 
-        return .badRequest
+        throw Abort(.badRequest)
     }
 }
