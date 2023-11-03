@@ -3,6 +3,13 @@ import Leaf
 import Fluent
 import FluentSQLiteDriver
 
+struct BookFormContext : Encodable {
+    // If book is nil, that means we are constructing a 
+    // form for adding books. Otherwise, we are constructing
+    // a form for editing an existing book.
+    var book: Book? = nil
+}
+
 func index(request: Request) async throws -> View {
     struct Context : Encodable {
         var books: [Book]
@@ -13,7 +20,7 @@ func index(request: Request) async throws -> View {
 }
 
 func addBookForm(request: Request) async throws -> View {
-    return try await request.view.render("book-form")
+    return try await request.view.render("book-form", BookFormContext())
 }
 
 let app = Application()

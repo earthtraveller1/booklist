@@ -3,12 +3,18 @@
         class="bg-zinc-900 text-zinc-100 focus:outline-none my-2 border-b-gray-700 focus:border-b-gray-500 duration-300 border-solid border-b-2 py-2" 
         type="text" 
         name="title"
+        #if(book != nil):
+            value="#(book.title)"
+        #endif
         autocomplete="false" 
         placeholder="Title"
     >
     <input 
         type="text" 
         name="author"
+        #if(book != nil):
+            value="#(book.author)"
+        #endif
         class="bg-zinc-900 text-zinc-100 focus:outline-none my-2 border-b-gray-700 focus:border-b-gray-500 duration-300 border-solid border-b-2 py-2" 
         autocomplete="false" 
         placeholder="Author"
@@ -16,18 +22,31 @@
     <input 
         type="text" 
         name="yearPublished"
+        #if(book != nil):
+            value="#(book.yearPublished)"
+        #endif
         class="bg-zinc-900 text-zinc-100 focus:outline-none my-2 border-b-gray-700 focus:border-b-gray-500 duration-300 border-solid border-b-2 py-2" 
         autocomplete="false" 
         placeholder="Year Published"
     >
 
+    <!-- If book is nil, that means we are constructing a form for creating books. 
+        Otherwise, we are constructing a form for editing an existing book. -->
     <button 
         class="mx-auto max-w-lg bg-lime-800 text-white p-4 my-4 text-lg rounded-lg hover:bg-lime-900 active:bg-lime-950 duration-200"
-        hx-post="/api/books"
+        #if(book == nil):
+            hx-post="/api/books"
+        #else:
+            hx-put="/api/books/#(book.id)"
+        #endif
         hx-target="#main-items"
         hx-include="closest div"
         hx-swap="outerHTML"
     >
-        Add Book
+        #if(book == nil):
+            Add Book
+        #else:
+            Save Changes
+        #endif
     </button>
 </div>
