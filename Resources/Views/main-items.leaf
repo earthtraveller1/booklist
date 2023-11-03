@@ -15,6 +15,7 @@
             >Delete Book</button>
             <button 
                 class="bg-cyan-700 text-white rounded-lg text-center flex align-middle w-16 shrink-0 my-2 py-4 mr-4 hover:bg-cyan-800 active:bg-cyan-900 duration-200"
+                hx-get="/api/books/#(book.id)/edit"
                 hx-swap="outerHTML"
                 hx-target="closest div"
             >Edit Book</button>

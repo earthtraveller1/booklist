@@ -7,8 +7,24 @@ struct BookController: RouteCollection {
             books.post(use: addBook)
             books.group(":id") { booksID in 
                 booksID.delete(use: deleteBook)
+                booksID.get("edit", use: getEditBookForm)
             }
         }
+    }
+
+    func getEditBookForm(request: Request) async throws -> View {
+        if let bookID = request.parameters.get("id") {
+            if let bookID = UUID.init(uuidString: bookID) {
+                let book = try await Book
+                    .query(on: request.db)
+                    .filter(\.$id == bookID)
+                    .first()
+
+                return try await request.view.render("book-form", BookFormContext(book: book))
+            }
+        }
+
+        throw Abort(.badRequest)
     }
 
     func addBook(request: Request) async throws -> View {
